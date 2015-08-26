@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Customer>
+    <firstName>firstName</firstName>
+    <lastName>lastName</lastName>
+    <emailId>Email</emailId>
+    <phoneNo>453545345</phoneNo>
+    <status>Provision Ready</status>
+    <type>Residential</type>
+    <serviceAddress>request</serviceAddress>
+    <paymentMethod>paymentmethod</paymentMethod>
+</Customer>
