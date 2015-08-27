@@ -14,7 +14,7 @@ import com.dao.DateDao;
 
 public class Dummy {
 	public static void main(String args[]) throws SQLException, ParseException_Exception {
-
+//For Testing Purpose Only
 //		DateDao dd = new DateDao();
 //		List x = new ArrayList();
 //		x = dd.getdate("March");
@@ -33,19 +33,19 @@ public class Dummy {
 //			System.out.println(l.getProductName());
 //			System.out.println(l.getProdEffDate());
 //			System.out.println(l.getProdEndDate());
-//			}
-		List<Integer> x=new ArrayList<Integer>();
-		DateDao dd= new DateDao();
-		x=dd.getdate("January");
-		Iterator<Integer> i= x.iterator();
-		
-		while(i.hasNext())
-		{
-			int a=i.next().intValue();
-			System.out.println(a);
-		}
-		CustomerDaoService cds= new CustomerDaoService();
-		CustomerDao cd=cds.getCustomerDaoPort();
-		cd.newInstall("12-12-12", "new", "Residential", "m");
+////			}
+//		List<Integer> x=new ArrayList<Integer>();
+//		DateDao dd= new DateDao();
+//		x=dd.getdate("January");
+//		Iterator<Integer> i= x.iterator();
+//		
+//		while(i.hasNext())
+//		{
+//			int a=i.next().intValue();
+//			System.out.println(a);
+//		}
+//		CustomerDaoService cds= new CustomerDaoService();
+//		CustomerDao cd=cds.getCustomerDaoPort();
+//		cd.newInstall("12-12-12", "new", "Residential", "m");
 	}
 }

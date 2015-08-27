@@ -276,15 +276,14 @@
 		document.getElementById('ButtonPrevious').name = 'Step1';
 		document.getElementById('ButtonPrevious').disabled = '';
 		document.getElementById('Step1').style.display = 'none';
-
 		document.getElementById('Step2').style.display = '';
-
 	}
 </script>
 
 </head>
 
 <body onload="getProducts()">
+
 	<form id="SubscriptionWizard" action="CustomerServlet" method="post">
 
 		<table border="1" cellpadding="5" cellspacing="0" id="HeaderTable"

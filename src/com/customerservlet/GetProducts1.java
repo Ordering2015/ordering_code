@@ -32,7 +32,8 @@ public class GetProducts1 extends HttpServlet {
 		ArrayOfProductClass s = b.getProductsByServiceID(val,"NY");
 		List<ProductClass> p = s.getProductClass();
 		System.out.println("working");
-		out.println("<table class=\"vztable1\">");
+		out.println("<br><br><table class=\"vztable\">");
+		out.println("<tr><td><b>Product Name</b></td><td><b>Product Description</b></td><td><b>Product Price</b></td></tr>");
 		for (ProductClass l : p) {
 			out.println("<tr>");
 		//	out.println("<div align=\"center\"><div class=\"inputwrap\">");
@@ -40,7 +41,7 @@ public class GetProducts1 extends HttpServlet {
 			out.println("<td><input type=\"checkbox\" id=\"cb" + i
 					+ "\" name=\"cb\" value=\""+ l.getProductName()
 					+ "\"><label for=\"cb"+i+"\">" + l.getProductName()
-					+ "</label></td><td>  "+l.getProductDesc()+"</td><td>"+l.getRate()+"</td>");
+					+ "</label></td><td>  "+l.getProductDesc()+"</td><td> $" +l.getRate()+"</td>");
 			out.println("</div>");
 			out.println("</tr>");
 			System.out.println(l.getProductDesc());
