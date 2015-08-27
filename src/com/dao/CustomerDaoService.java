@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "CustomerDaoService", targetNamespace = "http://dao.com/", wsdlLocation = "http://192.168.0.121:50/CustomerOrdersService?wsdl")
+@WebServiceClient(name = "CustomerDaoService", targetNamespace = "http://dao.com/", wsdlLocation = "http://192.168.0.121:501/CustomerOrdersService?wsdl")
 public class CustomerDaoService
     extends Service
 {
@@ -30,7 +30,7 @@ public class CustomerDaoService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("http://192.168.0.121:50/CustomerOrdersService?wsdl");
+            url = new URL("http://192.168.0.121:501/CustomerOrdersService?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }
