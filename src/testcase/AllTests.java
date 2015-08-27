@@ -5,7 +5,7 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({TestDatebaseConnection.class,TestDate.class})
+@SuiteClasses({TestDatebaseConnection.class,TestDate.class,TestJAXB.class})
 public class AllTests {
 
 }

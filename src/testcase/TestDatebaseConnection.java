@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
 import com.factory.Factory;
 
 import org.junit.Before;
@@ -24,7 +23,8 @@ public class TestDatebaseConnection {
 	@Test
 	public void testUTC_01() throws SQLException, ClassNotFoundException {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-		expected = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "hr", "hr");
+		expected = DriverManager.getConnection(
+				"jdbc:oracle:thin:@localhost:1521:orcl", "hr", "hr");
 		Connection actual = Factory.createOracleConnection();
 		assertNotNull(actual);
 	}

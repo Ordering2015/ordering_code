@@ -43,7 +43,7 @@ public class TestDate {
 		System.out.println("Multiple Record Selected");
 		List<Integer> actual = d.getdate("January");
 		int a = actual.size();
-		assertEquals(4, a);
+		assertEquals(4,a);
 	}
 
 	@Test(expected=SQLException.class)

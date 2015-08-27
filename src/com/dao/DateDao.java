@@ -17,9 +17,9 @@ public class DateDao {
 public DateDao() {
 		conn = Factory.createOracleConnection();
 	}
-public List getdate(String month)throws SQLException
+public List getdate(String month)
 {
-	List<Integer> x=new ArrayList<Integer>();
+	List x=new ArrayList();
 	int i=0,y;
 	try
 	{
@@ -29,15 +29,12 @@ public List getdate(String month)throws SQLException
 	while(rs.next())
 	{
 		x.add(rs.getInt(1));
-		
 		i++;
 	}
 }
-
 catch(SQLException s)
 {
 	System.out.println(s);
-	throw s;
 }	
 	return x;
 }

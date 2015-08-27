@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,40 +20,30 @@ public class GetDate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
+     * @throws IOException 
      * @see HttpServlet#HttpServlet()
      */
   
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
 		DateDao dd= new DateDao();
 		List<Integer> x=new ArrayList();
 		int j=0;
 		String val = request.getParameter("val");
 		System.out.println(val);
-		try {
-			x=dd.getdate(val);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		PrintWriter out = response.getWriter();
-		try {
-			x=dd.getdate(val);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		Iterator<Integer> i= x.iterator();
-		out.println("<select name=\"dueDate\" class=\"select-style\">");
-		while(i.hasNext())
-		{
-			int a=i.next().intValue();
-			out.println("<option value=\""+a+"\">"+a+"</option>");
-			System.out.println(a);
-		}
-		out.println("</select>");
-		out.println("</div>");
-		out.println("</div>");
+		x=dd.getdate(val);
+			Iterator<Integer> i= x.iterator();
+out.println("<select name=\"dueDate\" class=\"select-style\">");
+while(i.hasNext())
+{
+		int a=i.next().intValue();
+		out.println("<option value=\""+a+"\">"+a+"</option>");
+		System.out.println(a);
+}
+out.println("</select>");
+out.println("</div>");
+out.println("</div>");
 //		out.println("<div class=\"select-style\"> <br />");
 //		out.println("<select>");
 //		while(i.hasNext())
@@ -65,8 +54,7 @@ public class GetDate extends HttpServlet {
 //		}
 //				out.println("</select>");
 //				out.println("</div>");		
-	}
-	
+	}	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

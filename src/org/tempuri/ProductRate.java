@@ -24,6 +24,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="Rate" type="{http://www.w3.org/2001/XMLSchema}decimal"/>
  *         &lt;element name="Rate_eff_date" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
  *         &lt;element name="Rate_end_date" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
+ *         &lt;element name="State_code" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -37,7 +38,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "productID",
     "rate",
     "rateEffDate",
-    "rateEndDate"
+    "rateEndDate",
+    "stateCode"
 })
 public class ProductRate {
 
@@ -51,6 +53,8 @@ public class ProductRate {
     @XmlElement(name = "Rate_end_date", required = true)
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar rateEndDate;
+    @XmlElement(name = "State_code")
+    protected String stateCode;
 
     /**
      * Gets the value of the productID property.
@@ -146,6 +150,30 @@ public class ProductRate {
      */
     public void setRateEndDate(XMLGregorianCalendar value) {
         this.rateEndDate = value;
+    }
+
+    /**
+     * Gets the value of the stateCode property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getStateCode() {
+        return stateCode;
+    }
+
+    /**
+     * Sets the value of the stateCode property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setStateCode(String value) {
+        this.stateCode = value;
     }
 
 }

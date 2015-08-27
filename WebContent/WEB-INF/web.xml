@@ -39,4 +39,14 @@
     <servlet-name>GetDate</servlet-name>
     <url-pattern>/GetDate</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GetProducts1</display-name>
+    <servlet-name>GetProducts1</servlet-name>
+    <servlet-class>com.customerservlet.GetProducts1</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetProducts1</servlet-name>
+    <url-pattern>/GetProducts1</url-pattern>
+  </servlet-mapping>
 </web-app>

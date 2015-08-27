@@ -30,11 +30,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetProductsByServiceIDResponse }
+     * Create an instance of {@link GetProductDescriptionByProductName }
      * 
      */
-    public GetProductsByServiceIDResponse createGetProductsByServiceIDResponse() {
-        return new GetProductsByServiceIDResponse();
+    public GetProductDescriptionByProductName createGetProductDescriptionByProductName() {
+        return new GetProductDescriptionByProductName();
+    }
+
+    /**
+     * Create an instance of {@link GetProductDescriptionByProductNameResponse }
+     * 
+     */
+    public GetProductDescriptionByProductNameResponse createGetProductDescriptionByProductNameResponse() {
+        return new GetProductDescriptionByProductNameResponse();
     }
 
     /**
@@ -43,6 +51,14 @@ public class ObjectFactory {
      */
     public ArrayOfProductClass createArrayOfProductClass() {
         return new ArrayOfProductClass();
+    }
+
+    /**
+     * Create an instance of {@link GetProductsByServiceIDResponse }
+     * 
+     */
+    public GetProductsByServiceIDResponse createGetProductsByServiceIDResponse() {
+        return new GetProductsByServiceIDResponse();
     }
 
     /**

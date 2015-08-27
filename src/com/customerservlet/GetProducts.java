@@ -30,13 +30,13 @@ public class GetProducts extends HttpServlet {
 		String val = request.getParameter("val");
 		GetAllProducts a = new GetAllProducts();
 		GetAllProductsSoap b = a.getGetAllProductsSoap();
-		ArrayOfProductClass s = b.getProductsByServiceID(val);
+		ArrayOfProductClass s = b.getProductsByServiceID(val,"NY");
 		List<ProductClass> p = s.getProductClass();
 		System.out.println("working");
 		for (ProductClass l : p) {
 			out.println("<div align=\"center\"><div class=\"inputwrap\">");
 			out.println("<input type=\"checkbox\" id=\"cb" + i
-					+ "\" name=\"cb\" value=\""+ l.getProductName()
+					+ "\" name=\"cb\" value=\""+ l.getProductID()
 					+ "\"><label for=\"cb"+i+"\">" + l.getProductName()
 					+ "</label>");
 			out.println("</div>");

@@ -11,7 +11,6 @@
 	var cid1;
 	function handleWizardNext() {
 		if (document.getElementById('ButtonNext').name == 'Step2')
-
 		{
 			document.getElementById('ButtonNext').name = 'Step3';
 			document.getElementById('ButtonPrevious').name = 'Step1';
@@ -100,13 +99,9 @@
 			document.getElementById('Step3').style.display = '';
 
 		}
-
 	}
-
 	function loadStep5Review()
-
 	{
-
 		document.getElementById('viewfirstname').innerHTML = document
 				.getElementById('firstName').value
 				+ "  " + document.getElementById('lastName').value;
@@ -152,8 +147,8 @@
 
 	}
 	function getProducts() {
-		var v = "3";
-		var url = "GetProducts?val=" + v;
+		var v = "2";
+		var url = "GetProducts1?val=" + v;
 		if (window.XMLHttpRequest) {
 			request = new XMLHttpRequest();
 		} else if (window.ActiveXObject) {
@@ -206,7 +201,6 @@
 					document.getElementById("date2").innerHTML = request.responseText;
 					//window.alert("I m in 2nd function");
 				}
-
 			}
 		}
 	}
@@ -383,7 +377,6 @@
 			</div>
 		</span> <br> <br>
 		<div align="center">
-
 			<input id="ButtonPrevious" type="button" value="Previous"
 				class="vzbtn" disabled="disabled" name=""
 				onclick="handleWizardPrevious()" /> <input id="ButtonNext"
@@ -391,10 +384,6 @@
 				onclick="handleWizardNext()" /> <input id="SubmitFinal"
 				type="submit" value="Finish" class="vzbtn" disabled="disabled" />
 		</div>
-
-
 	</form>
-
 </body>
-
 </html>

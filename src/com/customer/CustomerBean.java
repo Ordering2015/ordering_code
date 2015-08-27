@@ -17,17 +17,17 @@ public class CustomerBean {
 	private String billingAddress;
 	private String serviceAddress;
 	private String paymentMethod;
-	private String password;
-	
-	@XmlTransient
-    public String getPassword() {
-        return password;
-    }
+//	private String password;
+//	
+//	@XmlTransient
+//    public String getPassword() {
+//        return password;
+//    }
+// 
  
- 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+//    public void setPassword(String password) {
+//        this.password = password;
+//    }
 	
 	
 	public String getFirstName() {
@@ -110,10 +110,10 @@ public class CustomerBean {
 		this.serviceAddress = serviceAddress;
 	}
 	
-	 @Override
-	    public String toString() {
-	        return "firstName = " + firstName + " lastName=" + lastName + " emailId=" + emailId + " phoneNo=" + phoneNo + " status=" +
-	        		status + " type=" + type;
-	    }
+//	 @Override
+//	    public String toString() {
+//	        return "firstName = " + firstName + " lastName=" + lastName + " emailId=" + emailId + " phoneNo=" + phoneNo + " status=" +
+//	        		status + " type=" + type;
+//	    }
 
 }

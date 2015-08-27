@@ -36,6 +36,7 @@ public interface GetAllProductsSoap {
 
     /**
      * 
+     * @param stateCode
      * @param serviceid
      * @return
      *     returns org.tempuri.ArrayOfProductClass
@@ -46,7 +47,9 @@ public interface GetAllProductsSoap {
     @ResponseWrapper(localName = "GetProductsByServiceIDResponse", targetNamespace = "http://tempuri.org/", className = "org.tempuri.GetProductsByServiceIDResponse")
     public ArrayOfProductClass getProductsByServiceID(
         @WebParam(name = "serviceid", targetNamespace = "http://tempuri.org/")
-        String serviceid);
+        String serviceid,
+        @WebParam(name = "state_code", targetNamespace = "http://tempuri.org/")
+        String stateCode);
 
     /**
      * 
@@ -92,5 +95,19 @@ public interface GetAllProductsSoap {
     @RequestWrapper(localName = "GetProductRates", targetNamespace = "http://tempuri.org/", className = "org.tempuri.GetProductRates")
     @ResponseWrapper(localName = "GetProductRatesResponse", targetNamespace = "http://tempuri.org/", className = "org.tempuri.GetProductRatesResponse")
     public ArrayOfProductRate getProductRates();
+
+    /**
+     * 
+     * @param productName
+     * @return
+     *     returns org.tempuri.ArrayOfProductClass
+     */
+    @WebMethod(operationName = "GetProductDescriptionByProductName", action = "http://tempuri.org/GetProductDescriptionByProductName")
+    @WebResult(name = "GetProductDescriptionByProductNameResult", targetNamespace = "http://tempuri.org/")
+    @RequestWrapper(localName = "GetProductDescriptionByProductName", targetNamespace = "http://tempuri.org/", className = "org.tempuri.GetProductDescriptionByProductName")
+    @ResponseWrapper(localName = "GetProductDescriptionByProductNameResponse", targetNamespace = "http://tempuri.org/", className = "org.tempuri.GetProductDescriptionByProductNameResponse")
+    public ArrayOfProductClass getProductDescriptionByProductName(
+        @WebParam(name = "Product_name", targetNamespace = "http://tempuri.org/")
+        String productName);
 
 }

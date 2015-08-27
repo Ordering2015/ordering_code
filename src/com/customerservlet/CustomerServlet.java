@@ -1,104 +1,227 @@
 package com.customerservlet;
+import org.tempuri.*;
 
 import java.beans.XMLEncoder;
+
+import com.dao.*;
+
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.customer.Table1;
+import com.customer.Table2;
+import com.customer.Table3;
 import com.customer.AddressBean;
 import com.customer.CustomerBean;
+import com.dao.CreateXML;
 public class CustomerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	private static final String FILE_NAME1 = "jaxb-emp.xml";
+	private static final String FILE_NAME2 = "jaxb-emp.xml";
+	private static final String FILE_NAME3 = "jaxb-emp.xml";
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	}
 
-	public String setCustomerValues(HttpServletRequest request) {
-		CustomerBean cb = new CustomerBean();
-		cb.setBillingAddress(setBillingAddressValues(request));
-		cb.setEmailId(request.getParameter("Email"));
-		cb.setFirstName(request.getParameter("firstName"));
-		cb.setLastName(request.getParameter("lastName"));
-		cb.setPaymentMethod(request.getParameter("paymentmethod"));
-		cb.setPhoneNo(Long.parseLong(request.getParameter("phone")));
-		cb.setServiceAddress(setServiceAddressValues(request));
-		cb.setStatus("Provision Ready");
-		cb.setType("Residential");
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		XMLEncoder xmlEncoder = new XMLEncoder(baos);
-		xmlEncoder.writeObject(cb);
-		xmlEncoder.close();
-		String xml = baos.toString();
-		return xml;
+	public Table1 setTable1Values(HttpServletRequest request)
+	{
+		Table1 t1= new Table1();
+		t1.setCustomer_Bill_pay(request.getParameter("paymentmethod"));
+		t1.setCustomer_email_id(request.getParameter("Email"));
+		t1.setCustomer_fname(request.getParameter("firstName"));
+		t1.setCustomer_lname(request.getParameter("lastName"));
+		t1.setCustomer_mobile_no(Long.parseLong(request.getParameter("phone")));
+		t1.setCustomer_status("Active");
+		t1.setCustomer_type("New Order");
+		//System.out.println("Inside table1set");
+		return t1;		
+		
 	}
-
-	public String setBillingAddressValues(HttpServletRequest request) {
-		AddressBean ab1 = new AddressBean();
-		ab1.setAddressLine1((String) request.getParameter("BAddressLine1"));
-		ab1.setAddressLine2((String) request.getParameter("BAddressLine2"));
-		ab1.setCity((String) request.getParameter("BCity"));
-		ab1.setStateCode((String) request.getParameter("BState"));
-		ab1.setZipCode((String) request.getParameter("BZipCode"));
-		String bAddress = ab1.getAddressLine1() + " " + ab1.getAddressLine2()
-				+ " " + ab1.getCity() + " " + ab1.getStateCode() + " "
-				+ ab1.getZipCode();
-		return bAddress;
-
+	public Table2 setBAddressValues(HttpServletRequest request)
+	{
+		Table2 t2= new Table2();
+		t2.setAdd_line1(request.getParameter("BAddressLine1"));
+		t2.setAdd_line2(request.getParameter("BAddressLine2"));
+		t2.setAdd_type("Billing");
+		t2.setCity(request.getParameter("BCity"));
+		t2.setState(request.getParameter("BState"));
+		t2.setState_code(" ");
+		t2.setZip_code(Integer.parseInt(request.getParameter("BZipCode")));
+		//System.out.println("Inside table 2");
+		return t2;
+		
 	}
-
-	public String setServiceAddressValues(HttpServletRequest request) {
-		AddressBean ab = new AddressBean();
-		ab.setAddressLine1((String) request.getParameter("SAddressLine1"));
-		ab.setAddressLine2((String) request.getParameter("SAddressLine2"));
-		ab.setCity((String) request.getParameter("SCity"));
-		ab.setStateCode((String) request.getParameter("SState"));
-		ab.setZipCode((String) request.getParameter("SZipCode"));
-		String sAddress = ab.getAddressLine1() + " " + ab.getAddressLine2()
-				+ " " + ab.getCity() + " " + ab.getStateCode() + " "
-				+ ab.getZipCode();
-		return sAddress;
+	public Table2 setSAddressValues(HttpServletRequest request)
+	{
+		Table2 t2= new Table2();
+		t2.setAdd_line1(request.getParameter("SAddressLine1"));
+		t2.setAdd_line2(request.getParameter("SAddressLine2"));
+		t2.setAdd_type("Service");
+		t2.setCity(request.getParameter("SCity"));
+		t2.setState(request.getParameter("SState"));
+		t2.setState_code("");
+		t2.setZip_code(Integer.parseInt(request.getParameter("SZipCode")));
+		return t2;
 	}
+	 private void table1ToXML(Table1 tb) {
+		   
+		 try {
+         JAXBContext context = JAXBContext.newInstance(CustomerBean.class);
+         Marshaller m = context.createMarshaller();
+         m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+         m.marshal(tb, new File(FILE_NAME1));
+     } catch (JAXBException e) {
+         e.printStackTrace();
+     }
+		 System.out.println("table1 to xml");
+ }
 
-	/*
-	 * public OrderBean setOrderValues(HttpServletRequest request) { OrderBean
-	 * ob = new OrderBean();
-	 * //ob.setCustomerId(Integer.parseInt(request.getParameter("")));
-	 * ob.setServiceId(Integer.parseInt(request.getParameter("")));
-	 * //ob.setOrderId(Integer.parseInt(request.getParameter("")));
-	 * ob.setProductid(Integer.parseInt(request.getParameter("")));
-	 * SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
-	 * java.util.Date date = null; try { date =
-	 * sdf.parse(request.getParameter(" ")); } catch (ParseException pe) {
-	 * System.out.println(pe); } ob.setDueDate(date);
-	 * ob.setOrderStatus("Provision Ready");
-	 * System.out.println(ob.getCustomerId() + " " + ob.getServiceId() + " " +
-	 * ob.getOrderId() + " " + ob.getProductid() + " " + ob.getDueDate() + " " +
-	 * ob.getOrderStatus()); return ob; }
-	 */
-
+	    private  void table2ToXML(Table2 tb) {
+	 	        try {
+	            JAXBContext context = JAXBContext.newInstance(CustomerBean.class);
+	            Marshaller m = context.createMarshaller();
+	             m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);	             
+	            m.marshal(tb, new File(FILE_NAME2));
+	        } catch (JAXBException e) {
+	            e.printStackTrace();
+	            System.out.println("table2 to xml");
+	        }
+	    }
+	    private  void table3ToXML(Table3 tb) {
+ 	        try {
+            JAXBContext context = JAXBContext.newInstance(CustomerBean.class);
+            Marshaller m = context.createMarshaller();
+            
+            m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+            
+            m.marshal(tb, new File(FILE_NAME3));
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
+ 	        System.out.println("table3 to xml");
+    }
+	    private String getstring(String a)
+	    {
+	    	String content="";
+	    	String EoL = System.getProperty("line.separator");
+	    	List<String> lines;
+	    	try {
+	    		lines = Files.readAllLines(Paths.get(a),
+	    		        Charset.defaultCharset());
+	    		StringBuilder sb = new StringBuilder();
+	    	for (String line : lines) {
+	    	    sb.append(line).append(EoL);
+	    	}
+	    	content = content+sb.toString();	    	
+	    	} catch (IOException e) {
+	    		
+	    		e.printStackTrace();
+	    	}
+	    	System.out.println(content+"getstring function");
+	    	return content;
+	    }
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// setOrderValues(request);
-		System.out.println(setCustomerValues(request));
+		//System.out.println(setCustomerValues(request));
 		String[] check=request.getParameterValues("cb");
-		
-		for(int i=0; i<check.length; i++)
-       {
-            System.out.println(check[i]);
-        }
+		String s1="";
 		String dateMonth=request.getParameter("mySelect");
 		String datedate=request.getParameter("dueDate");
-		System.out.println(dateMonth);
-		System.out.println(datedate);
+		//System.out.println(dateMonth);
+		//System.out.println(datedate);
+		String rdate= dateMonth+"-"+datedate+"-2015";
+		DateFormat df = new SimpleDateFormat("yyyy/MM/dd"); 
+        Date startDate=null;
+        /*String newDateString = null;
+        try 
+        {
+            startDate = df.parse(rdate);
+            newDateString = df.format(startDate);
+            System.out.println(startDate);
+        } catch (ParseException e) 
+        {
+            e.printStackTrace();
+        }*/
+     	Table1 t1=new Table1();
+		Table2 t2=new Table2();
+		Table2 t4=new Table2();
+		t1= setTable1Values(request);
+		t2= setBAddressValues(request);
+		t4=setSAddressValues(request);
+		CustomerDaoService cds= new CustomerDaoService();
+		 CustomerDao cd= cds.getCustomerDaoPort();		 	 
+		 GetAllProducts a = new GetAllProducts();
+			GetAllProductsSoap b = a.getGetAllProductsSoap();
+			
+		for(int i=0; i<check.length; i++)
+	       {
+			String disc=" ";
+			String sid=" ";
+			ArrayOfProductClass s2 = b.getProductDescriptionByProductName(check[i]);
+			List<ProductClass> p = s2.getProductClass();
+			for (ProductClass l : p) {
+				disc=l.getProductDesc();
+				sid=l.getProductID();
+				}
+	            System.out.println(check[i]);
+	            Table3 t3= new Table3();
+	    		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	    		Date date = new Date();		
+	    		String s= "2015-"+request.getParameter("mySelect")+"-"+request.getParameter("dueDate");
+	    		t3.setOrder_due_date(s);
+	    		t3.setOrder_negotiation_date(dateFormat.format(date));
+	    		t3.setOrder_status("PR");
+	    		t3.setOrder_type("New");
+	    		t3.setProduct_description(disc);
+	    		t3.setProduct_id(sid);
+	    		t3.setProduct_name(check[i]);
+	    		t3.setProduct_qty("1");
+	    		t3.setProduct_start_date(" ");
+	    		t3.setService_id(sid);
+	    		t3.setService_name("Residential");
+	    		t3.setService_end_date(" ");
+	    		s1=s1+CreateXML.getStringTable3(t3);
+	        }
+		 String m="";
+		try {
+			m = CreateXML.getStringTable1(t1)+CreateXML.getStringTable2(t2)+CreateXML.getStringTable2(t4)+s1;
+		} catch (JAXBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		 m=m.replace("(<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>)","");
+		 System.out.println(m);
+		 
+			
+		 try {
+			cd.newInstall(rdate,"new",m,"Residential");
+		}catch (ParseException_Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		}
 	}
 
-}
+
