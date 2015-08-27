@@ -2,9 +2,10 @@
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<jsp:include page="Header.jsp"></jsp:include>
 <head>
 <title>Ordering</title>
-<link rel="stylesheet" type="text/css" href="styles1.css">
+<link rel="stylesheet" type="text/css" href="styles.css">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script type="text/javascript">
@@ -281,6 +282,7 @@
 </script>
 
 </head>
+<div class = "layout">
 
 <body onload="getProducts()">
 
@@ -451,5 +453,7 @@
 				type="submit" value="Finish" class="vzbtn" disabled="disabled" />
 		</div>
 	</form>
+	</div>
+	<jsp:include page="Header2.jsp"></jsp:include>
 </body>
 </html>
